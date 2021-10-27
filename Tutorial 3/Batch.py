@@ -45,5 +45,7 @@ def equation(proc_time):
 
 process_time = fsolve(equation,[1])
 
+#To see the figures
+plt.show()
 
 print("The process time necessary to obtain a solid residue concentration of", C_specific, "[kg/l] is:", process_time, "[h]")
