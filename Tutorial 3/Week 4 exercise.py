@@ -1,15 +1,17 @@
 import numpy as np
 import matplotlib.pyplot as plt 
 from scipy.optimize import fsolve
+import math
 
 # data:
-A=20;
-B=0.1;
-C0=0.05;
-V0=500;
-process_time=5;
+A=5; # [m2]
+Qin_i=200; # [m3/day]
+Cin_i=0.5 #[kg/m3]
+Cin_i_plus_one=20 #[kg/m3]
+J=3.8*0.1* math.log(145/Cin_i_plus_one) * 24  # convert to days from hours
 
-Cout=C0+A*B*process_time/V0
+#  C(in, i+1)= C(in, i) + (n * A * J) / Q(in, i)
+n=((Cin_i_plus_one-Cin_i)*Qin_i)/ (J*A)
 
-
-print("The steady state concentration is", Cout, "[kg/l]")
+print("The number of membrane modules necessary for the operation of this process in a single-stage "
+      "feed-and-bleed configuration is", n)
